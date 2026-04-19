@@ -1,0 +1,1042 @@
+/* Variáveis de Cor */
+:root {
+    --roxo: #a020f0;
+    --roxo-glow: rgba(160, 32, 240, 0.4);
+    --rubro: #9b111e;
+    --fundo: #0a0a0a;
+    --fundo-card: #0d0d0d;
+    --texto: #e0e0e0;
+}
+
+body {
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    margin: 0;
+
+    background-image: url(img/DNA\ NEBULA\ KRL.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 500px;
+}
+
+/* Configuração básica das camadas */
+#estrelas-camada1, #estrelas-camada2, #estrelas-camada3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+/* Camada 1: Estrelas pequenas e lentas (ao fundo) */
+#estrelas-camada1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    z-index: -1;
+    background: transparent;
+    /* Criando várias estrelas com sombras */
+    box-shadow: 
+        24vw 10vh #FFF, 65vw 88vh #FFF, 12vw 34vh #a020f0, 87vw 15vh #FFF, 43vw 56vh #FFF,
+        9vw 72vh #FFF, 55vw 21vh #a020f0, 31vw 94vh #FFF, 76vw 48vh #FFF, 2vw 12vh #FFF,
+        98vw 63vh #a020f0, 18vw 81vh #FFF, 47vw 5vh #FFF, 60vw 37vh #FFF, 82vw 92vh #FFF,
+        36vw 25vh #a020f0, 71vw 11vh #FFF, 5vw 50vh #FFF, 52vw 77vh #FFF, 91vw 40vh #FFF,
+        28vw 68vh #FFF, 66vw 22vh #a020f0, 14vw 96vh #FFF, 79vw 54vh #FFF, 41vw 19vh #FFF;
+    animation: animarEstrelas 200s linear infinite;
+}
+
+/* Camada 2: Estrelas médias */
+#estrelas-camada2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    z-index: -1;
+    box-shadow: 
+        15vw 45vh #FFF, 82vw 12vh #9b111e, 44vw 89vh #FFF, 67vw 32vh #9b111e,
+        5vw 75vh #FFF, 93vw 50vh #FFF, 22vw 18vh #9b111e, 58vw 61vh #FFF,
+        39vw 40vh #FFF, 74vw 77vh #9b111e, 10vw 29vh #FFF, 88vw 85vh #FFF;
+    animation: animarEstrelas 120s linear infinite;
+}
+
+/* Camada 3: Estrelas maiores e rápidas (mais próximas) */
+#estrelas-camada3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 3px;
+    z-index: -1;
+    box-shadow: 
+        8vw 20vh #FFF, 50vw 60vh #a020f0, 85vw 15vh #FFF, 30vw 80vh #a020f0,
+        70vw 40vh #FFF, 15vw 90vh #FFF;
+    animation: animarEstrelas 60s linear infinite;
+}
+
+/* A animação que faz as estrelas subirem */
+@keyframes animarEstrelas {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); } /* Elas "sobem" infinitamente */
+}
+.ficha {
+    border: 2px solid var(--roxo);
+    box-shadow: 0 0 20px var(--roxo-glow);
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    background: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+}
+
+.titulo-terminal {
+    color: var(--roxo);
+    margin-top: 0;
+    text-shadow: 0 0 10px var(--roxo);
+}
+
+/* Grids */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
+.grid-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 25px; }
+.apt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* Inputs e Estilização */
+input {
+    background: #1a1a1a;
+    border: 1px solid var(--roxo);
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 8px var(--roxo);
+}
+
+input[type="number"] { width: 60px; text-align: center; }
+#nome { width: 100%; max-width: 250px; }
+
+/* Itens de Aptidão */
+.apt-item {
+    background: rgba(155, 17, 30, 0.05);
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    border-left: 4px solid var(--rubro);
+    align-items: center;
+    border-radius: 0 4px 4px 0;
+}
+
+.v-final {
+    color: var(--roxo);
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px var(--roxo-glow);
+}
+
+h3 {
+    border-bottom: 2px solid var(--rubro);
+    color: var(--rubro);
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Checkbox estilizado (opcional) */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--roxo);
+}
+/* Estilização para a nova Grid de 4 colunas (Topo) */
+.grid-4 { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
+    margin-bottom: 25px; 
+}
+
+/* Estilização dos menus de seleção (Raça e Classe) */
+select {
+    background: #1a1a1a;
+    border: 1px solid var(--roxo);
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 8px var(--roxo);
+}
+
+/* Efeito Hover nos itens de aptidão */
+.apt-item:hover {
+    background: rgba(160, 32, 240, 0.1);
+    border-left: 4px solid var(--roxo);
+}
+
+/* Ajuste para telas menores (Responsividade básica) */
+@media (max-width: 768px) {
+    .grid-4, .grid-3 {
+        grid-template-columns: 1fr 1fr;
+    }
+    .grid-7 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .apt-grid {
+        grid-template-columns: 1fr;
+    }
+}
+#hp_atual {
+    border-color: #00ff00; /* Borda verde para indicar "vida" */
+    text-align: center;
+    font-weight: bold;
+}
+
+#hp_atual:focus {
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.defesa-box {
+    border: 1px solid #00ffff !important; /* Borda Ciano */
+    background: rgba(0, 255, 255, 0.05) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    margin: 20px auto; /* Centraliza e dá espaço */
+    width: fit-content;
+    padding: 15px 30px !important;
+}
+
+.ca-destaque {
+    color: #00ffff !important;
+    font-size: 2.5em !important;
+    text-shadow: 0 0 10px #00ffff;
+    font-weight: bold;
+}
+
+/* Garante que o label da CA também seja ciano */
+.defesa-box label {
+    color: #00ffff !important;
+    letter-spacing: 2px;
+}
+/* --- AJUSTES FINAIS DE ATRIBUTOS E BÔNUS --- */
+
+/* Caixa do atributo centralizada */
+.atributo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(160, 32, 240, 0.05);
+    padding: 10px 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(160, 32, 240, 0.2);
+}
+
+.atributo-box label {
+    font-size: 0.8em;
+    color: var(--roxo);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Ajuste fino dos inputs dentro da linha */
+.atributo-box input[type="number"] {
+    width: 42px !important;
+    height: 30px;
+    font-size: 1em;
+}
+
+/* Estilo da caixa de bônus */
+.bonus-input {
+    width: 35px !important;
+    height: 25px !important;
+    background: rgba(160, 32, 240, 0.1) !important;
+    border: 1px dashed #ff66ff !important;
+    font-size: 0.75em !important;
+    color: #ff00ff !important;
+    padding: 0 !important;
+}
+
+/* Valor total destacado com efeito Neon */
+.total-destaque {
+    font-weight: bold;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+/* Ajuste para o placeholder não sumir */
+.bonus-input::placeholder {
+    color: rgba(255, 0, 255, 0.1);
+}
+
+.nebula-visor {
+    border: none !important; /* Removemos a borda simples antiga */
+    background: rgba(149, 0, 50, 0.08) !important;
+    width: 240px !important;
+    max-width: 400px;
+    padding: 10px 15px !important;
+    margin: 20px auto !important;
+    margin-top: 10px !important;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 15px rgba(149, 0, 50, 0.2);
+}
+
+/* Criando os cantos do visor com os pseudo-elementos ::before e ::after */
+.nebula-visor::before, .nebula-visor::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 3px solid #950032; /* Cor Crimson */
+}
+
+/* Canto Superior Esquerdo */
+.nebula-visor::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Canto Inferior Direito */
+.nebula-visor::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.visor-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7em;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(149, 0, 50, 0.3);
+    padding-bottom: 5px;
+}
+
+.visor-header label {
+    color: #ff4d88 !important; /* Rosa claro para o título ler bem */
+    text-shadow: 0 0 8px #950032;
+    font-size: 1.5em !important;
+    letter-spacing: 2px;
+}
+
+.status-icon {
+    color: #950032;
+    font-size: 0.9em;
+}
+
+.nebula-visor input {
+    color: #ff4d88 !important;
+    font-size: 1.4em !important;
+    width: 55px !important;
+    height: 35px !important;
+    border: 1px solid rgba(149, 0, 50, 0.5) !important;
+    background: #0d0d0d !important;
+    box-shadow: 0 0 10px rgba(149, 0, 50, 0.3);
+}
+
+.separador-fluxo {
+    font-size: 1em;
+    color: rgba(255, 77, 136, 0.4);
+    margin: 0 10px;
+}
+
+.max-nebula {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ff4d88;
+    text-shadow: 0 0 15px rgba(255, 77, 136, 0.6);
+}
+.btn-perigo {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace; /* Ou a fonte do seu sistema */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.btn-perigo:hover {
+    background: #ff0000;
+    color: #000;
+    box-shadow: 0 0 20px #ff0000;
+}
+.controles-finais button {
+    background: transparent;
+    color: var(--roxo); /* Ou a cor magenta que você usa */
+    border: 1px solid var(--roxo);
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.controles-finais button:hover {
+    background: var(--roxo);
+    color: #000;
+    box-shadow: 0 0 10px var(--roxo);
+}
+.tabela-combate {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabela-combate th {
+    text-align: left;
+    font-size: 0.7em;
+    color: #ff4d88;
+    padding: 5px;
+    border-bottom: 1px solid #950032;
+    background: rgba(149, 0, 50, 0.2);
+    text-shadow: 0 0 5px #ff4d88;
+}
+
+.tabela-combate td {
+    padding: 5px 2px;
+}
+
+.tabela-combate input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(149, 0, 50, 0.3);
+    color: white;
+    padding: 3px;
+}
+
+.grid-inventario-armaduras {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas para armaduras */
+    gap: 15px;
+}
+
+.sub-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sub-grid input[type="number"] {
+    width: 50px;
+    background: #000;
+    border: 1px solid #ff4d88;
+    color: #00ff00;
+    text-align: center;
+}
+
+/* Área de Texto da Mochila */
+#itens_gerais {
+    width: 100%;
+    background: rgba(20, 0, 10, 0.8);
+    border: 1px solid #ff0055;
+    color: #ffb3cc; /* Texto verde estilo terminal */
+    font-family: 'Courier New', monospace;
+    padding: 15px;
+    resize: vertical;
+}
+
+#itens_gerais::-webkit-scrollbar {
+    width: 8px;
+}
+#itens_gerais::-webkit-scrollbar-thumb {
+    background: #ff0055;
+    border-radius: 10px;
+}
+
+.item-equipavel-box {
+    text-align: center;
+    border: 1px dashed rgba(149, 0, 50, 0.5);
+    padding: 10px;
+}
+.item-equipavel-box.reserva {
+    opacity: 0.7;
+    border-style: dotted;
+}
+.item-equipavel-box:has(input[type="radio"]:checked) {
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.radio-container {
+    cursor: pointer;
+    font-size: 0.8em;
+    color: #888;
+}
+
+input[type="radio"]:checked + span, 
+.item-equipavel-box:has(input[type="radio"]:checked) label {
+    color: #00ff00; /* Texto fica verde quando equipado */
+}
+/* Título Principal do Inventário */
+.titulo-sessao {
+    color: #ff0055; /* Magenta principal */
+    text-shadow: 0 0 10px #ff0055, 0 0 20px #950032;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+/* Estilizando especificamente o container de Créditos */
+.moeda-container {
+    border: 1px solid #ffcc00; /* Borda Dourada/Âmbar */
+    padding: 10px;
+    background: rgba(255, 204, 0, 0.05);
+    display: inline-block; /* Para não ocupar a tela toda */
+    border-radius: 4px;
+}
+
+.moeda-container label {
+    color: #ffcc00; /* Cor do Dinheiro */
+    text-shadow: 0 0 8px #ffcc00;
+    font-weight: bold;
+}
+
+#creditos {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ffcc00;
+    color: #ffcc00;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    width: 80px;
+    text-align: center;
+    outline: none;
+}
+.inv-secao h3 {
+    color: #00ffff; /* Ciano para dar contraste com o magenta */
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    padding-bottom: 5px;
+    text-shadow: 0 0 5px #00ffff;
+}
+span[id^="v_"] {
+    min-width: 35px;      /* Garante um espaço mínimo para números altos */
+    display: inline-block; /* Permite que o min-width funcione */
+    text-align: center;    /* Centraliza o número (ex: Vontade) */
+    font-weight: bold;     /* Deixa o valor mais visível */
+    color: #ff0055;        /* Mantém o tom Magenta do sistema */
+}
+/* --- FRAME PRINCIPAL: ROXO ELÉTRICO HUD --- */
+.container-principal {
+    /* 1. A BORDA BASE */
+    border: 3px solid #bc00ff !important; /* Roxo Elétrico Saturado */
+    border-radius: 12px !important; /* Canto suave, mas não muito redondo */
+    
+    /* 2. O SHADOW COMPLEXO (O SEGREDO DO BRILHO) */
+    box-shadow: 
+        /* Camada 1: Brilho Roxo Externo (difuso e suave) */
+        0 0 25px rgba(188, 0, 255, 0.4),
+        /* Camada 2: Brilho Magenta Externo (mais concentrado perto da borda) */
+        0 0 10px rgba(122, 0, 204, 0.6),
+        /* Camada 3: Brilho Interno (dá profundidade de "vidro") */
+        inset 0 0 15px rgba(188, 0, 255, 0.3),
+        /* Camada 4: Sombra Interna Escura (separa a borda do conteúdo) */
+        inset 0 0 5px rgba(0, 0, 0, 0.5) !important;
+        
+    /* 3. O FUNDO (Destaque para o DNA) */
+    background: 
+        /* Gradiente suave de fundo para simular tela acesa */
+        radial-gradient(circle at center, rgba(30, 0, 40, 0.8) 0%, rgba(10, 0, 15, 0.95) 100%),
+        /* O fundo de DNA que você já tem (exemplo) */
+        url('caminho/para/seu/dna_background.png') !important;
+    background-size: cover;
+
+    /* 4. AJUSTES GERAIS */
+    padding: 30px !important;
+    margin: 30px auto !important;
+    max-width: 1050px !important;
+    position: relative;
+}
+.container-principal:hover {
+    animation: pulsarRoxo 2s infinite;
+}
+/* --- O EFETIO HUD ::BEFORE (LINHA DE DADO NO TOPO) --- */
+.container-principal::before {
+    content: "";
+    position: absolute;
+    top: -3px; /* Alinhado exatamente na borda */
+    left: 15%; /* Começa a 15% da esquerda */
+    right: 15%; /* Termina a 15% da direita */
+    height: 3px; /* Mesma espessura da borda */
+    border-radius: 3px;
+    
+    /* Um Ciano Elétrico para contraste (efeito HUD) */
+    background: #00ffff;
+    
+    /* Brilho Intenso do Ciano */
+    box-shadow: 0 0 15px #00ffff, 0 0 5px #00ffff;
+    
+    /* Garante que fique acima da borda roxa */
+    z-index: 10;
+}
+@keyframes pulsarRoxo {
+    0% { box-shadow: 0 0 15px rgba(188, 0, 255, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(188, 0, 255, 0.7); }
+    100% { box-shadow: 0 0 15px rgba(188, 0, 255, 0.4); }
+}
+.aptidao-linha:hover {
+    background: rgba(188, 0, 255, 0.15) !important;
+    transform: translateX(5px); /* Move levemente para o lado */
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+/* --- FRAME EXTERNO DA FICHA (O MONITOR) --- */
+.container-principal {
+    border: 3px solid #bc00ff !important;
+    border-radius: 12px !important;
+    padding: 30px !important;
+    margin: 30px auto !important;
+    max-width: 1050px !important;
+    position: relative;
+    background: rgba(10, 0, 15, 0.95) !important;
+    /* Brilho Roxo Padrão */
+    box-shadow: 0 0 25px rgba(188, 0, 255, 0.4), 
+                inset 0 0 15px rgba(188, 0, 255, 0.2) !important;
+    transition: all 0.5s ease; /* Suaviza a troca de cor de roxo para vermelho/verde */
+}
+
+/* Efeito HUD no Topo */
+.container-principal::before {
+    content: "";
+    position: absolute;
+    top: -3px; left: 15%; right: 15%; height: 3px;
+    background: #00ffff;
+    box-shadow: 0 0 15px #00ffff;
+    z-index: 10;
+}
+
+/* --- VARIANTES DE STATUS DO FRAME --- */
+.frame-sangue { 
+    border-color: #ff0000 !important; 
+    box-shadow: 
+        0 0 15px #ff0000, 
+        inset 0 0 15px rgba(255, 0, 0, 0.3) !important;
+    
+    /* Vinheta vermelha nas bordas internas da ficha */
+    background-image: radial-gradient(circle, transparent 60%, rgba(255, 0, 0, 0.1) 100%) !important;
+    
+    animation: pulso-cardiaco 2s infinite ease-in-out !important;
+}
+
+/* ANIMAÇÃO: Batida de Coração (Duplo pulso suave) */
+@keyframes pulso-cardiaco {
+    0% { 
+        box-shadow: 0 0 10px #ff0000, inset 0 0 10px rgba(255, 0, 0, 0.2);
+        filter: brightness(1);
+    }
+    15% { 
+        box-shadow: 0 0 25px #ff0000, inset 0 0 20px rgba(255, 0, 0, 0.4);
+        filter: brightness(1.2); /* Primeira batida */
+    }
+    30% { 
+        box-shadow: 0 0 15px #ff0000, inset 0 0 10px rgba(255, 0, 0, 0.2);
+        filter: brightness(1);
+    }
+    45% { 
+        box-shadow: 0 0 20px #ff0000, inset 0 0 15px rgba(255, 0, 0, 0.3);
+        filter: brightness(1.1); /* Segunda batida (menor) */
+    }
+    100% { 
+        box-shadow: 0 0 10px #ff0000, inset 0 0 10px rgba(255, 0, 0, 0.2);
+        filter: brightness(1);
+    }
+}
+.status-sangue-texto {
+    animation: gotejar 2s infinite;
+}
+
+@keyframes gotejar {
+    0%, 100% { text-shadow: 0 0 5px #ff0000; }
+    50% { text-shadow: 0 5px 15px #ff0000; } /* Sombra "escorre" para baixo */
+}
+
+.frame-hemorragia {
+    border-color: #8b0000 !important; /* Vermelho Escuro */
+    box-shadow: 0 0 40px #ff0000, inset 0 0 25px #8b0000 !important;
+    animation: strobe-sangue 0.3s infinite alternate !important;
+}
+
+/* ANIMAÇÃO: Strobe de Sangue (Mais rápido que o pulso de sangramento) */
+@keyframes strobe-sangue {
+    0% { 
+        filter: brightness(0.8);
+        box-shadow: 0 0 15px #8b0000, inset 0 0 10px #8b0000;
+    }
+    100% { 
+        filter: brightness(1.5);
+        box-shadow: 0 0 50px #ff0000, inset 0 0 30px #ff0000;
+        border-color: #ff0000;
+    }
+}
+
+.frame-veneno { 
+    border-color: #39ff14 !important; /* Verde Neon */
+    box-shadow: 
+        0 0 20px #39ff14, 
+        0 0 40px rgba(57, 255, 20, 0.3), 
+        inset 0 0 30px rgba(57, 255, 20, 0.2) !important;
+    
+    /* Transforma o Magenta do Nebula no Verde Ácido */
+    filter: hue-rotate(240deg) saturate(1.5) brightness(1.1) !important;
+    
+    /* Efeito de "Bolhas" ou névoa tóxica no fundo */
+    background-image: radial-gradient(circle at 50% 50%, transparent 40%, rgba(57, 255, 20, 0.05) 100%) !important;
+    
+    animation: pulso-toxico 2.5s infinite ease-in-out !important;
+}
+
+/* ANIMAÇÃO: Pulso Tóxico (Lento e levemente instável) */
+@keyframes pulso-toxico {
+    0% { 
+        box-shadow: 0 0 15px #39ff14, inset 0 0 15px rgba(57, 255, 20, 0.2);
+        transform: scale(1);
+    }
+    50% { 
+        /* O auge da contaminação */
+        box-shadow: 0 0 35px #39ff14, 0 0 10px #ffffff, inset 0 0 40px rgba(57, 255, 20, 0.4);
+        transform: scale(1.002); /* Leve expansão como se estivesse "inchando" */
+    }
+    100% { 
+        box-shadow: 0 0 15px #39ff14, inset 0 0 15px rgba(57, 255, 20, 0.2);
+        transform: scale(1);
+    }
+}
+
+.frame-eletrizado { 
+    border-color: #00ffff !important; 
+    box-shadow: 0 0 20px #00ffff, inset 0 0 15px rgba(0, 255, 255, 0.4) !important;
+    animation: jitter 0.15s infinite !important; /* Tremor mais rápido e caótico */
+}
+
+/* EFEITO CONGELADO - Azul Bebê, brilho suave e cintilação polar */
+.frame-congelado { 
+    border-color: #add8e6 !important; /* Azul Bebê / Gelo */
+    box-shadow: 
+        0 0 15px #ffffff, 
+        0 0 30px #00ffff, 
+        inset 0 0 40px rgba(0, 255, 255, 0.2) !important;
+    
+    /* Efeito de "Frio" no conteúdo: cores mais pálidas e frias */
+    filter: hue-rotate(50deg) saturate(0.6) brightness(1.2) !important;
+    
+    background-image: radial-gradient(circle at center, transparent 30%, rgba(224, 255, 255, 0.05) 100%) !important;
+    animation: brilho-gelado 4s infinite ease-in-out !important;
+}
+
+/* ANIMAÇÃO: Cintilação Polar (Lenta e cristalina) */
+@keyframes brilho-gelado {
+    0% { 
+        opacity: 1;
+        box-shadow: 0 0 10px #ffffff, 0 0 20px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+    50% { 
+        opacity: 0.9;
+        /* O "pico" de brilho, como um cristal refletindo luz */
+        box-shadow: 0 0 25px #ffffff, 0 0 50px #00ffff, inset 0 0 60px rgba(255, 255, 255, 0.4);
+        border-color: #ffffff;
+    }
+    100% { 
+        opacity: 1;
+        box-shadow: 0 0 10px #ffffff, 0 0 20px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+}
+.frame-congelado::before {
+    content: "❄";
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 10px #00ffff;
+    pointer-events: none;
+    animation: flash-suave 2s infinite alternate;
+}
+
+@keyframes flash-suave {
+    from { opacity: 0.2; }
+    to { opacity: 0.7; }
+}
+
+/* CORAÇÃO DE CRISTAL: Flashes rápidos, agressivos e perigosos (SEM Tremer) */
+.frame-cristal { 
+    border-color: #ff00ff !important; /* Rosa Choque */
+    box-shadow: 0 0 30px #ff00ff, 
+                inset 0 0 20px rgba(255, 0, 255, 0.6) !important;
+    
+    /* Animação MUITO mais rápida (0.2s) e agressiva (infinite) */
+    animation: strobe-cristal 0.2s infinite alternate !important; 
+}
+
+/* QUEIMADO: Tons alaranjados, calor intenso e brilho de chamas */
+.frame-queimado { 
+    border-color: #ff4500 !important; /* Laranja avermelhado */
+    box-shadow: 
+        0 0 20px #ff6600, 
+        0 0 40px #ffcc00, 
+        inset 0 0 20px rgba(255, 69, 0, 0.5) !important;
+    animation: chamas-vibrantes 2s infinite ease-in-out !important;
+}
+/* O Frame Principal quando Quebra-Cura está ativo */
+.frame-quebracura {
+    position: relative;
+    /* Opcional: Uma borda cinza para acompanhar o símbolo */
+    border-color: #888888 !important;
+    box-shadow: 0 0 20px rgba(136, 136, 136, 0.5), inset 0 0 10px rgba(136, 136, 136, 0.3) !important;
+}
+
+/* O SÍMBOLO DE QUEBRA-CURA SOBRE A FICHA */
+.frame-quebracura {
+    position: relative;
+    border-color: #555555 !important;
+    box-shadow: 0 0 20px rgba(85, 85, 85, 0.5) !important;
+}
+
+.frame-quebracura::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    z-index: 1000;
+    pointer-events: none;
+
+    /* CAMINHO DA IMAGEM */
+    background-image: url('img/ggnoheal.png'); 
+    
+    /* CONFIGURAÇÃO DO PADRÃO (Ícones menores e espalhados) */
+    background-size: 120px; /* Tamanho de cada ícone */
+    background-repeat: repeat; /* Faz repetir na ficha toda */
+    background-position: center;
+    
+    /* EFEITO VISUAL: Cinza e Fantasmagórico */
+    filter: grayscale(1) opacity(0.4);
+    
+    /* ANIMAÇÃO: Aparecer e Sumir com leve tremor */
+    animation: glitch-varios 4s infinite ease-in-out !important;
+}
+
+/* ANIMAÇÃO: Fade in/out com um leve deslocamento (glitch) */
+@keyframes glitch-varios {
+    0% { 
+        opacity: 0; 
+        transform: scale(1);
+    }
+    10% { opacity: 0.2; transform: translate(2px, 2px); }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(1.01) translate(0, 0); 
+    }
+    90% { opacity: 0.2; transform: translate(-2px, -2px); }
+    100% { 
+        opacity: 0; 
+        transform: scale(1);
+    }
+}
+
+/* ANIMAÇÃO: Chamas (Simula o balanço e a variação de brilho do fogo) */
+@keyframes chamas-vibrantes {
+    0% { 
+        box-shadow: 0 0 20px #ff4500, 0 0 40px #ffcc00, inset 0 0 15px #ff4500; 
+        filter: brightness(1);
+    }
+    50% { 
+        box-shadow: 0 0 35px #ff6600, 0 0 60px #ffcc00, inset 0 0 25px #ff6600; 
+        filter: brightness(1.2); /* Dá um pico de luz no meio da chama */
+    }
+    100% { 
+        box-shadow: 0 0 20px #ff4500, 0 0 40px #ffcc00, inset 0 0 15px #ff4500; 
+        filter: brightness(1);
+    }
+}
+
+/* ANIMAÇÃO: Strobe de Cristal (Rápido e agressivo) */
+@keyframes strobe-cristal {
+    0% { 
+        /* Estado de "baixo" brilho - Ainda é visível e perigoso */
+        opacity: 0.8; 
+        box-shadow: 0 0 10px #ff00ff, inset 0 0 5px #ff00ff;
+        border-color: #ff00ff;
+    }
+    100% { 
+        /* Estado de "flashe" - Brilha com uma amplitude enorme e luz branca */
+        opacity: 1; 
+        box-shadow: 0 0 60px #ff00ff, 
+                    0 0 10px #ffffff,
+                    inset 0 0 40px #ff00ff; 
+        border-color: #ffffff; /* Brilha quase branco no auge */
+    }
+}
+
+/* ANIMAÇÃO: Jitter (Mantemos o tremor apenas para eletricidade) */
+@keyframes jitter {
+    0% { transform: translate(0); }
+    33% { transform: translate(2px, -1px); }
+    66% { transform: translate(-2px, 1px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes flash-alerta { from { opacity: 1; } to { opacity: 0.6; } }
+
+.flicker {
+    animation: text-flicker 0.1s infinite alternate;
+}
+
+@keyframes text-flicker {
+    from { opacity: 1; text-shadow: 0 0 10px #ff00ff; }
+    to { opacity: 0.4; text-shadow: 0 0 2px #ff00ff; }
+}
+/* --- CONTAINER DE STATUS (ABAIXO DA CA) --- */
+.container-status-efeitos {
+    border-top: 1px solid rgba(188, 0, 255, 0.3);
+    border-bottom: 1px solid rgba(188, 0, 255, 0.3);
+    padding: 15px 0;
+    margin: 20px 0;
+    background: rgba(188, 0, 255, 0.02);
+    text-align: center;
+}
+
+.header-status {
+    font-size: 0.75em;
+    letter-spacing: 3px;
+    color: #bc00ff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.grid-condicoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Estilo dos Botões (Labels) */
+.status-item input { display: none; }
+.status-item span {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #888;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Brilho quando ativado */
+.status-item input:checked + span {
+    border-color: #bc00ff;
+    color: #fff;
+    background: rgba(188, 0, 255, 0.2);
+    box-shadow: 0 0 12px #bc00ff;
+}
+
+/* Cores específicas para tipos de status */
+.status-sangue input:checked + span { border-color: #ff0000; box-shadow: 0 0 12px #ff0000; }
+.status-veneno input:checked + span { border-color: #39ff14; box-shadow: 0 0 12px #39ff14; }
+.status-eletrico input:checked + span { border-color: #00ffff; box-shadow: 0 0 12px #00ffff; }
+.status-especial input:checked + span { border-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
+/* Brilho no número do nível */
+.nivel-maximo-aura {
+    color: #00ffff !important;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff !important;
+    display: inline-block;
+    /* Unificando as duas animações em uma única linha separada por vírgula */
+    animation: glitch-power 0.4s infinite steps(2), nebula-surge 1.5s infinite alternate ease-in-out !important;
+}
+.nebula-max-purple {
+    color: #bc13fe !important; /* Força o Roxo aqui também */
+    animation: nebula-purple-pulse 2s infinite alternate ease-in-out !important;
+}
+
+@keyframes nebula-purple-pulse {
+    0% { 
+        color: #bc13fe; 
+        text-shadow: 0 0 5px #bc13fe; 
+    }
+    100% { 
+        color: #f0f; 
+        text-shadow: 0 0 15px #bc13fe, 0 0 30px #ff00ff; 
+    }
+}
+@keyframes glitch-power {
+    0% { transform: translate(0); text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+    25% { transform: translate(1px, -1px); }
+    50% { transform: translate(-1px, 1px); text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+    100% { transform: translate(0); }
+}
+
+/* Aura no frame ao atingir o ápice */
+.frame-potencial-maximo {
+    border-color: #bc13fe !important; /* Roxo Elétrico */
+    box-shadow: 
+        0 0 20px rgba(188, 19, 254, 0.5), 
+        inset 0 0 15px rgba(188, 19, 254, 0.3) !important;
+    animation: nebula-overload-purple 2s infinite alternate ease-in-out !important;
+}
+
+@keyframes nebula-overload-purple {
+    0% { 
+        box-shadow: 0 0 20px rgba(188, 19, 254, 0.5), inset 0 0 10px rgba(188, 19, 254, 0.2); 
+    }
+    100% { 
+        box-shadow: 
+            0 0 40px rgba(188, 19, 254, 0.8), 
+            0 0 10px #ffffff, /* Brilho branco no centro para parecer energia */
+            inset 0 0 30px rgba(188, 19, 254, 0.4); 
+    }
+}
+
+@keyframes nebula-surge {
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.05); filter: brightness(1.4); }
+}

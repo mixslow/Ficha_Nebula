@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Nebula</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="estrelas-camada1"></div>
+    <div id="estrelas-camada2"></div>
+    <div id="estrelas-camada3"></div>
+
+<div id= "aba-ficha" class="container-principal">
+        <h2 class="titulo-terminal">> SISTEMA_NEBULA</h2>
+        
+        <div class="grid-4">
+            <div class="input-group">Nome: <input type="text" id="nome"></div>
+            
+            <div class="input-group">
+                Raça: 
+                <select id="raca" onchange="calc()">
+                    <option value="Humano">Humano</option>
+                    <option value="Andróide">Andróide</option>
+                    <option value="Celeosk">Celeosk</option>
+                    <option value="Conduir">Conduir</option>
+                    <option value="Demonsk">Demonsk</option>
+                    <option value="Elfim">Elfim</option>
+                    <option value="Krajuru">Krajuru</option>
+                    <option value="Muron">Muron</option>
+                    <option value="Nebulofita">Nebulofita</option>
+                    <option value="Reptiliano">Reptiliano</option>
+                    <option value="Slimud">Slimud</option>
+                    <option value="Tiano">Tiano</option>
+                    <option value="Tribuiru">Tribuiru</option>
+                    <option value="Venomud">Venomud</option>
+                    <option value="Híbrido">Híbrido</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                Classe: 
+                <select id="classe" onchange="calc()">
+                    <option value="Apostador">Apostador</option>
+                    <option value="Atirador">Atirador</option>
+                    <option value="Berserker">Berserker</option>
+                    <option value="Caçador">Caçador</option>
+                    <option value="Contador de Odisséia">Contador de Odisséia</option>
+                    <option value="Devotado">Devotado</option>
+                    <option value="Dobrador">Dobrador</option>
+                    <option value="Inventor">Inventor</option>
+                    <option value="Lutador">Lutador</option>
+                    <option value="Médico">Médico</option>
+                    <option value="Piloto">Piloto</option>
+                    <option value="Samurai">Samurai</option>
+                    <option value="Tanque">Tanque</option>
+                    <option value="Taoísta">Taoísta</option>
+                </select>
+            </div>
+
+            <div class="input-group">Nível: <input type="number" id="nivel" value="1" oninput="calc()"></div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 25px; border: 1px dashed var(--roxo); padding: 15px; border-radius: 8px; background: rgba(160, 32, 240, 0.05);">
+    <div style="text-align: center;">
+        HP MÁXIMO: <br>
+        <span id="v_hp" class="v-final" style="font-size: 1.5em;">0</span>
+    </div>
+    <div style="text-align: center;">
+        HP ATUAL: <br>
+        <input type="number" id="hp_atual" value="0" oninput="calc()" style="font-size: 1.2em; width: 70px; margin-top: 5px;">
+    </div>
+    <div style="text-align: center;">
+        STATUS: <br>
+        <span id="status_label" class="v-final" style="font-size: 1.2em;">OPERANTE</span>
+    </div>
+    <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;"></div>
+    <div class="recurso-container nebula-visor">
+    <div class="visor-header">
+        <label> NEBULA </label>
+            <span class="status-icon">[[ LIFE CORE ]]</span>
+        </div>
+        <div class="input-row visor-content">
+            <input type="number" id="nebula_atual" value="20">
+            <span class="separador-fluxo">▶▶</span>
+            <span id="v_nebula_max" class="max-nebula">20</span>
+        </div>
+    </div>
+</div>
+<div class="atributo-box defesa-box">
+    <label>CLASSE DE ARMADURA (CA)</label>
+    <div class="input-row">
+        <div class="input-row">
+        <span id="v_ca" class="ca-destaque">10</span>
+        <input type="number" id="ca_bonus" class="bonus-input" placeholder="+B" oninput="calc()">
+    </div>
+</div>
+</div>
+<div class="container-status-efeitos">
+    <h3 class="titulo-status">CONDIÇÕES DE SISTEMA</h3>
+    
+    <div class="grid-condicoes">
+        <div class="grupo-status">
+            <label class="status-item"><input type="checkbox" id="cond_exausto" onchange="calc()"> <span>Exausto</span></label>
+            <label class="status-item"><input type="checkbox" id="cond_vulneravel" onchange="calc()"> <span>Vulnerável</span></label>
+            <label class="status-item"><input type="checkbox" id="cond_cegueira" onchange="calc()"> <span>Cegueira</span></label>
+            <label class="status-item"><input type="checkbox" id="cond_surdez" onchange="calc()"> <span>Surdez</span></label>
+            <label class="status-item"><input type="checkbox" id="cond_medo" onchange="calc()"> <span>Medo</span></label>
+        </div>
+
+        <div class="grupo-status">
+            <label class="status-item status-mental"><input type="checkbox" id="stat_sonolento" onchange="calc()"> <span>Sonolento</span></label>
+            <label class="status-item status-eletrico"><input type="checkbox" id="stat_eletrizado" onchange="calc()"> <span>Eletrizado</span></label>
+            <label class="status-item status-gelo"><input type="checkbox" id="stat_congelado" onchange="calc()"> <span>Congelado</span></label>
+            <label class="status-item status-fogo"><input type="checkbox" id="stat_queimado" onchange="calc()"> <span>Queimado</span></label>
+            <label class="status-item status-sangue"><input type="checkbox" id="stat_sangrando" onchange="calc()"> <span>Sangrando</span></label>
+            <label class="status-item status-sangue"><input type="checkbox" id="stat_hemorragia" onchange="calc()"> <span>Hemorragia</span></label>
+            <label class="status-item status-veneno"><input type="checkbox" id="stat_veneno" onchange="calc()"> <span>Envenenado</span></label>
+        </div>
+
+        <div class="grupo-status">
+            <label class="status-item status-curar"><input type="checkbox" id="stat_quebracura" onchange="calc()"> <span>Quebra Cura</span></label>
+            <label class="status-item status-especial"><input type="checkbox" id="stat_cristal" onchange="calc()"> <span>Coração de Cristal</span></label>
+        </div>
+    </div>
+</div>
+
+    <div class="grid-7">
+    <div class="atributo-box">
+        <label>FORÇA</label>
+        <div class="input-row">
+            <input type="number" id="for_base" value="0" oninput="calc()">
+            <input type="number" id="for_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_for_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>CON</label>
+        <div class="input-row">
+            <input type="number" id="con_base" value="0" oninput="calc()">
+            <input type="number" id="con_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_con_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>DES</label>
+        <div class="input-row">
+            <input type="number" id="des_base" value="0" oninput="calc()">
+            <input type="number" id="des_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_des_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>INT</label>
+        <div class="input-row">
+            <input type="number" id="int_base" value="0" oninput="calc()">
+            <input type="number" id="int_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_int_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>SAB</label>
+        <div class="input-row">
+            <input type="number" id="sab_base" value="0" oninput="calc()">
+            <input type="number" id="sab_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_sab_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>PER</label>
+        <div class="input-row">
+            <input type="number" id="per_base" value="0" oninput="calc()">
+            <input type="number" id="per_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_per_total" class="total-destaque">0</span>
+    </div>
+
+    <div class="atributo-box">
+        <label>CAR</label>
+        <div class="input-row">
+            <input type="number" id="car_base" value="0" oninput="calc()">
+            <input type="number" id="car_bonus" class="bonus-input" placeholder="+" oninput="calc()">
+        </div>
+        <span id="v_car_total" class="total-destaque">0</span>
+    </div>
+</div>
+        <h3># APTIDÕES</h3>
+        <div class="apt-grid">
+            <div class="apt-item">Reflexo (Des) [Des+Per] <input type="checkbox" id="t_ref" onclick="calc()"> <span id="v_ref" class="v-final">0</span></div>
+            <div class="apt-item">Mira (Per) [Vant.] <input type="checkbox" id="t_mir" onclick="calc()"> <span id="v_mir" class="v-final">0</span></div>
+            <div class="apt-item">Furtividade (Des) [Vant.] <input type="checkbox" id="t_fur" onclick="calc()"> <span id="v_fur" class="v-final">0</span></div>
+            <div class="apt-item">Pilotar (Des) [+5] <input type="checkbox" id="t_pil" onclick="calc()"> <span id="v_pil" class="v-final">0</span></div>
+            <div class="apt-item">Sobrevivência (Sab) [Vant.] <input type="checkbox" id="t_sob" onclick="calc()"> <span id="v_sob" class="v-final">0</span></div>
+            <div class="apt-item">Fortitude (Con) [+For] <input type="checkbox" id="t_for" onclick="calc()"> <span id="v_for" class="v-final">0</span></div>
+            <div class="apt-item">Acrobacia (Des) [+For] <input type="checkbox" id="t_acr" onclick="calc()"> <span id="v_acr" class="v-final">0</span></div>
+            <div class="apt-item">Conhecimento (Int) [+Sab] <input type="checkbox" id="t_conh" onclick="calc()"> <span id="v_conh" class="v-final">0</span></div>
+            <div class="apt-item">Religião (Sab) [+3] <input type="checkbox" id="t_rel" onclick="calc()"> <span id="v_rel" class="v-final">0</span></div>
+            <div class="apt-item">Intimidação (Car) [+For] <input type="checkbox" id="t_int" onclick="calc()"> <span id="v_int" class="v-final">0</span></div>
+            <div class="apt-item">Sedução (Car) [Vant.] <input type="checkbox" id="t_sed" onclick="calc()"> <span id="v_sed" class="v-final">0</span></div>
+            <div class="apt-item">Lábia (Car) [+Per] <input type="checkbox" id="t_lab" onclick="calc()"> <span id="v_lab" class="v-final">0</span></div>
+            <div class="apt-item">Barganha (Car) [+Lábia] <input type="checkbox" id="t_bar" onclick="calc()"> <span id="v_bar" class="v-final">0</span></div>
+            <div class="apt-item">Leitura (Int) [+4] <input type="checkbox" id="t_lei" onclick="calc()"> <span id="v_lei" class="v-final">0</span></div>
+            <div class="apt-item">Reparo (Int) [+Conhec.] <input type="checkbox" id="t_rep" onclick="calc()"> <span id="v_rep" class="v-final">0</span></div>
+            <div class="apt-item">Domar (Car) [+Sobrev.] <input type="checkbox" id="t_dom" onclick="calc()"> <span id="v_dom" class="v-final">0</span></div>
+            <div class="apt-item">Investigar (Per) [+Sab] <input type="checkbox" id="t_inv" onclick="calc()"> <span id="v_inv" class="v-final">0</span></div>
+            <div class="apt-item">Vontade (Con/Int) [Completo] <input type="checkbox" id="t_von" onclick="calc()"> <span id="v_von" class="v-final">0</span></div>
+        </div>
+    </div>
+    <div id="aba-inventario" class="container-principal" style="display: none;">
+        <h2 class="titulo-sessao"> [ NEBULA STORAGE & ARSENAL ] </h2>
+
+<div class="moeda-container" style="margin-bottom: 20px;">
+    <label>💰 CRÉDITOS:</label>
+    <input type="number" id="creditos" value="0" class="input-transparente">
+</div>
+
+<div class="inv-secao">
+    <h3>⚔️ ARSENAL DE COMBATE</h3>
+    <table class="tabela-combate">
+        <thead>
+            <tr>
+                <th>ARMA</th>
+                <th>DANO</th>
+                <th>CRÍTICO</th>
+                <th>AMEAÇA</th>
+                <th>TIPO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" placeholder="Ex: Rifle Plasma"></td>
+                <td><input type="text" placeholder="2d10+4"></td>
+                <td><input type="text" placeholder="x3"></td>
+                <td><input type="text" placeholder="19"></td>
+                <td><input type="text" placeholder="Energia"></td>
+            </tr>
+            <tr>
+                    <td><input type="text" placeholder="Nome da Arma"></td>
+                    <td><input type="text" placeholder="Ex: 1d8"></td>
+                    <td><input type="text" placeholder="9m / Curto"></td>
+                    <td><input type="text" placeholder="x3"></td>
+                    <td><input type="text" placeholder="19"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Arma Reserva"></td>
+                    <td><input type="text" placeholder="-"></td>
+                    <td><input type="text" placeholder="-"></td>
+                    <td><input type="text" placeholder="-"></td>
+                    <td><input type="text" placeholder="-"></td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+<div class="inv-secao">
+    <h3>🛡️ ARMADURAS</h3>
+    <div class="grid-inventario-armaduras">
+        
+        <div class="item-equipavel-box" id="box-armadura-1">
+            <label>ARMADURA A</label>
+            <input type="text" placeholder="Ex: Malha Estelar">
+            <div class="sub-grid">
+                <input type="number" id="bonus_armadura_1" value="0" oninput="calc()">
+                <label class="radio-container">
+                    <input type="radio" name="equipar_armadura" value="1" onchange="calc()"> EQUIPAR
+                </label>
+            </div>
+        </div>
+
+        <div class="item-equipavel-box" id="box-armadura-2">
+            <label>ARMADURA B</label>
+            <input type="text" placeholder="Ex: Placas de Titânio">
+            <div class="sub-grid">
+                <input type="number" id="bonus_armadura_2" value="0" oninput="calc()">
+                <label class="radio-container">
+                    <input type="radio" name="equipar_armadura" value="2" onchange="calc()"> EQUIPAR
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="inv-secao">
+    <h3>📦 COMPARTIMENTOS DA MOCHILA</h3>
+    <textarea id="itens_gerais" rows="10" placeholder="Anote aqui medicamentos, utilitários e bônus diversos..."></textarea>
+</div>
+    </div>
+<div class="controles-finais" style="text-align: center; margin-top: 30px;">
+    <button onclick="alternarAba('ficha')">VER FICHA</button>
+    <button onclick="alternarAba('inventario')">VER INVENTÁRIO</button>
+    <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 20px 0;">
+</div>
+
+    <!-- Botão de Reset - Apaga todos os dados e volta ao estado inicial -->
+    <div style="text-align: center; margin-top: 30px;">
+    <button id="btn_reset" class="btn-perigo"> [ APAGAR DADOS ] </button>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
