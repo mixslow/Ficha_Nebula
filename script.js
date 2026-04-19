@@ -68,16 +68,25 @@ function calc() {
         }
     };
 
-    // --- BLOCO DE VALIDAÇÃO (Corrigido para não quebrar) ---
+    // --- BLOCO DE VALIDAÇÃO (Corrigido para permitir apagar) ---
     const inputNivel = document.getElementById('nivel');
-    let nivelVal = v('nivel'); // Usamos um nome temporário aqui
+    
+    // Pegamos o valor bruto do input
+    let nivelBruto = inputNivel?.value; 
+    
+    // Se o campo estiver vazio, usamos 1 para o cálculo, mas NÃO forçamos o valor no input ainda
+    let nivelVal = parseInt(nivelBruto) || 1; 
 
-    if (nivelVal > 15) {
-        nivelVal = 15;
-        if (inputNivel) inputNivel.value = 15;
-    } else if (nivelVal < 1) {
-        nivelVal = 1;
-        if (inputNivel) inputNivel.value = 1;
+    if (nivelBruto !== "") { // Só valida limites se o usuário não estiver apagando tudo
+        if (nivelVal > 15) {
+            nivelVal = 15;
+            if (inputNivel) inputNivel.value = 15;
+        } else if (nivelVal < 1) {
+            nivelVal = 1;
+            if (inputNivel) inputNivel.value = 1;
+        }
+    } else {
+        nivelVal = 1; // Valor padrão interno se o campo estiver vazio
     }
 
     // Agora sim definimos a constante que o seu código já usa lá embaixo
