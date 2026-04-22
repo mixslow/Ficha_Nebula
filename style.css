@@ -757,6 +757,27 @@ span[id^="v_"] {
     animation: jitter 0.15s infinite !important; /* Tremor mais rápido e caótico */
 }
 
+.frame-silenciado {
+    filter: grayscale(0.7) brightness(0.6) !important; /* Fica cinza e escuro */
+    border: 3px solid #666666 !important; /* Borda cinza metálica */
+    box-shadow: inset 0 0 20px #000 !important;
+    transition: 0.5s;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Adiciona granulação */
+    position: relative;
+}
+.frame-silenciado h1, 
+.frame-silenciado h2, 
+.frame-silenciado label {
+    color: #555 !important;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
+    letter-spacing: -1px; /* Letras ficam "espremidas" */
+}
+
+/* Opcional: faz o texto dentro da ficha brilhar menos */
+.frame-silenciado * {
+    text-shadow: none !important;
+}
+
 /* EFEITO CONGELADO - Azul Bebê, brilho suave e cintilação polar */
 .frame-congelado { 
     border-color: #add8e6 !important; /* Azul Bebê / Gelo */
