@@ -198,7 +198,7 @@ const frame = document.querySelector('.container-principal');
 
 if (frame) {
     // 1. Limpa todas as classes de status para resetar o visual
-    frame.classList.remove('frame-sangue', 'frame-hemorragia', 'frame-veneno', 'frame-eletrizado', 'frame-congelado', 'frame-cristal', 'frame-queimado', 'frame-quebracura', 'frame-potencial-maximo', 'outros-status...');
+    frame.classList.remove('frame-sangue', 'frame-hemorragia', 'frame-veneno', 'frame-eletrizado', 'frame-congelado', 'frame-cristal', 'frame-queimado', 'frame-quebracura', 'frame-potencial-maximo', 'frame-silenciado' , 'outros-status...');
 
     // 2. Checagem por Ordem de Importância (O primeiro TRUE para a execução)
     
@@ -214,6 +214,9 @@ if (frame) {
         // PRIORIDADE 2.5: Quebra-Cura (Entre Hemorragia e Sangue)
         frame.classList.add('frame-quebracura');
     }
+    else if (t('stat_silenciado')) {
+        frame.classList.add('frame-silenciado'); // Aqui ativa o ::after do CSS
+}
     else if (t('stat_congelado')) {
         // PRIORIDADE 7: Gelo
         frame.classList.add('frame-congelado');
