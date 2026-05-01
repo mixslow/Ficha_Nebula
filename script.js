@@ -190,7 +190,13 @@ if (statusLabel) {
     set('v_fur', t('t_fur') ? (DES + " +V") : DES);
     set('v_pil', t('t_pil') ? (DES + 5) : DES);
     set('v_von', t('t_von') ? (CON + INT + FOR + SAB) : (CON + INT));
-    // ... adicione as outras conforme sua necessidade, seguindo o padrão acima
+    set('v_sob', t('t_sob') ? (SAB + " +V") : SAB);
+    set('v_int', t('t_int') ? (CAR + FOR) : CAR);
+    set('v_sed', t('t_sed') ? (CAR + " +V") : CAR);
+    set('v_lei', t('t_lei') ? (INT + 4) : INT);
+    set('v_dom', t('t_dom') ? (CAR + SAB) : CAR);
+    set('v_inv', t('t_inv') ? (PER + SAB) : PER);
+    set('v_rel', t('t_rel') ? (SAB + 3) : SAB);
 
     // 9. APLICAÇÃO DE STATUS VISUAL (Sangrando, Envenenado, Eletrizado, Congelado, Cristalizado)
     // --- LÓGICA DE PRIORIDADE VISUAL DO FRAME ---
