@@ -374,6 +374,75 @@ document.getElementById('btn_reset').addEventListener('click', function() {
         location.reload();
     }
 });
+// --- SISTEMA DE DOWNLOAD/UPLOAD (SAVES EXTERNOS) ---
 
+function exportarFicha() {
+    const dadosFicha = {};
+    const campos = document.querySelectorAll('input, select, textarea');
+
+    // 1. Coleta todos os dados atuais da ficha
+    campos.forEach(campo => {
+        if (campo.id) {
+            if (campo.type === 'checkbox' || campo.type === 'radio') {
+                dadosFicha[campo.id] = campo.checked;
+            } else {
+                dadosFicha[campo.id] = campo.value;
+            }
+        }
+    });
+
+    // 2. Pergunta ao player qual nome ele deseja para o arquivo
+    // Pegamos o nome do personagem como sugestão inicial
+    const nomeSugestao = document.getElementById('nome')?.value || "Minha_Ficha";
+    let nomeArquivoCustom = prompt("Digite o nome para salvar o arquivo (sem extensão):", `ficha_${nomeSugestao.replace(/\s+/g, '_')}`);
+
+    // Se o player cancelar o prompt ou deixar vazio, interrompemos o download
+    if (nomeArquivoCustom === null || nomeArquivoCustom.trim() === "") {
+        return; 
+    }
+
+    // 3. Cria e dispara o download com o nome escolhido
+    const blob = new Blob([JSON.stringify(dadosFicha, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    
+    link.href = url;
+    link.download = `${nomeArquivoCustom}.json`; // Usa o nome que o player digitou
+    link.click();
+    
+    URL.revokeObjectURL(url);
+}
+
+function importarFicha(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        try {
+            const dados = JSON.parse(e.target.result);
+
+            Object.keys(dados).forEach(id => {
+                const campo = document.getElementById(id);
+                if (campo) {
+                    if (campo.type === 'checkbox' || campo.type === 'radio') {
+                        campo.checked = dados[id];
+                    } else {
+                        campo.value = dados[id];
+                    }
+                }
+            });
+
+            // Força o recálculo total da ficha e dos créditos
+            if (typeof calc === "function") calc();
+            if (typeof atualizarVisualCreditos === "function") atualizarVisualCreditos();
+            
+            alert("Sincronização concluída: Ficha carregada!");
+        } catch (erro) {
+            alert("ERRO CRÍTICO: Arquivo de dados corrompido.");
+        }
+    };
+    leitor.readAsText(arquivo);
+}
 
 window.onload = carregarFicha;
