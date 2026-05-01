@@ -292,16 +292,30 @@
 </div>
     </div>
 <div class="controles-finais" style="text-align: center; margin-top: 30px;">
-    <button onclick="alternarAba('ficha')">VER FICHA</button>
-    <button onclick="alternarAba('inventario')">VER INVENTÁRIO</button>
+    <!-- Alternar entre Abas -->
+    <button onclick="alternarAba('ficha')" class="btn-nebula">VER FICHA</button>
+    <button onclick="alternarAba('inventario')" class="btn-nebula">VER INVENTÁRIO</button>
+    
     <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 20px 0;">
+
+    <!-- BOTÕES DE SISTEMA (Saves Externos) -->
+    <div class="controles-sistema" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+        <button onclick="exportarFicha()" class="btn-nebula btn-exportar">
+            💾 EXPORTAR FICHA
+        </button>
+
+        <button onclick="document.getElementById('importar_file').click()" class="btn-nebula btn-importar">
+            📂 CARREGAR FICHA
+        </button>
+        
+        <!-- Input invisível para carregar o arquivo -->
+        <input type="file" id="importar_file" style="display: none;" accept=".json" onchange="importarFicha(event)">
+    </div>
+
+    <!-- Botão de Reset -->
+    <button id="btn_reset" class="btn-perigo"> [ APAGAR DADOS DO NAVEGADOR ] </button>
 </div>
 
-    <!-- Botão de Reset - Apaga todos os dados e volta ao estado inicial -->
-    <div style="text-align: center; margin-top: 30px;">
-    <button id="btn_reset" class="btn-perigo"> [ APAGAR DADOS ] </button>
-</div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
