@@ -445,4 +445,50 @@ function importarFicha(event) {
     leitor.readAsText(arquivo);
 }
 
+// --- SISTEMA NEBULA: COMPARTIMENTO DE DADOS HEXAGONAL ---
+
+function alternarPortaHex() {
+    const porta = document.getElementById('porta-hex');
+    // Adiciona ou remove a classe que controla a animação do CSS
+    porta.classList.toggle('porta-hex-aberta');
+}
+
+function rolarDadoHex(lados) {
+    const visor = document.getElementById('visor-hex-dado');
+    const detalheNeon = document.querySelector('.detalhe-neon');
+    
+    // Efeito de "carregamento" no visor
+    visor.style.opacity = "0.3";
+    visor.innerText = "rolling...";
+    visor.style.color = "#ffcc00"; // Reseta a cor para o padrão
+
+    // Pisca a luz neon do botão principal para dar feedback
+    if (detalheNeon) {
+        detalheNeon.style.background = "#ff4444";
+        detalheNeon.style.boxShadow = "0 0 10px #ff4444";
+    }
+
+    setTimeout(() => {
+        // Gera o número aleatório
+        const resultado = Math.floor(Math.random() * lados) + 1;
+        
+        // Exibe o resultado final
+        visor.innerText = `d${lados}: ${resultado}`;
+        visor.style.opacity = "1";
+        
+        // Restaura a luz neon do botão principal
+        if (detalheNeon) {
+            detalheNeon.style.background = "#ffcc00";
+            detalheNeon.style.boxShadow = "0 0 5px #ffcc00";
+        }
+
+        // Destaque visual para Críticos e Erros
+        if (resultado === lados) {
+            visor.style.color = "#00ffff"; // Sucesso Crítico (Ciano)
+        } else if (resultado === 1) {
+            visor.style.color = "#ff4444"; // Erro Crítico (Vermelho)
+        }
+    }, 400); // Tempo de "rolagem" em milissegundos
+}
+
 window.onload = carregarFicha;
