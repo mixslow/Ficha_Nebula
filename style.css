@@ -1098,3 +1098,104 @@ span[id^="v_"] {
     background: #ff4444;
     color: white;
 }
+
+/* Container Principal do Módulo */
+.modulo-hex-dados {
+    width: 95%;
+    margin: 10px auto 20px auto;
+    position: relative;
+}
+
+/* Botão Gatilho (Aba Hexagonal) */
+.gatilho-hex {
+    width: 100%;
+    background: #1a1a22;
+    color: #a020f0; /* Alterado para Roxo */
+    border: none;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    padding: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Formato Hexagonal */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 5% 100%, 0 80%);
+    transition: all 0.3s;
+    border-top: 1px solid rgba(160, 32, 240, 0.3); /* Alterado para Roxo */
+}
+
+/* Luz de status agora é um detalhe neon no topo */
+.detalhe-neon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: #a020f0; /* Alterado para Roxo */
+    box-shadow: 0 0 5px #a020f0; /* Alterado para Roxo */
+    transition: 0.3s;
+}
+
+/* A Porta Hidráulica Hexagonal */
+#porta-hex {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.65, 0.05, 0.36, 1);
+    background: linear-gradient(180deg, #111, #000);
+    border-left: 2px solid #a020f0; /* Roxo Nebula */
+    border-right: 2px solid #a020f0;
+}
+
+/* Quando a porta abre */
+.porta-hex-aberta {
+    max-height: 250px !important; 
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 10% 100%, 0 85%);
+    border-bottom: 2px solid #a020f0;
+}
+
+/* Conteúdo Interno */
+.conteudo-hex-interno {
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.porta-hex-aberta .conteudo-hex-interno {
+    opacity: 1;
+}
+
+/* Grid de Dados Hexagonal */
+.dice-grid-hex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.dice-grid-hex button {
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dice-grid-hex button:hover {
+    border-color: #a020f0; /* Alterado para Roxo */
+    background: rgba(160, 32, 240, 0.1); /* Alterado para Roxo */
+}
+
+/* Visor Digital Hex */
+.visor-digital-hex {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 2.2em;
+    color: #a020f0; /* Alterado para Roxo */
+    font-family: 'Courier New', monospace;
+    background: #000;
+    border: 1px inset #a020f0; /* Alterado para Roxo */
+    text-shadow: 0 0 10px rgba(160, 32, 240, 0.8); /* Alterado para Roxo */
+}
