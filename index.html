@@ -60,7 +60,31 @@
 
             <div class="input-group">Nível: <input type="number" id="nivel" value="1" oninput="calc()"></div>
         </div>
-
+    
+ <div class="modulo-hex-dados">
+    
+    <button class="gatilho-hex" onclick="alternarPortaHex()">
+        <span class="detalhe-neon"></span>
+        🎲 ROLAR DADOS
+    </button>
+    
+    <div id="porta-hex" class="porta-hex-fechada">
+        <div class="conteudo-hex-interno">
+            <div class="dice-grid-hex">
+                <button onclick="rolarDadoHex(4)">d4</button>
+                <button onclick="rolarDadoHex(6)">d6</button>
+                <button onclick="rolarDadoHex(8)">d8</button>
+                <button onclick="rolarDadoHex(10)">d10</button>
+                <button onclick="rolarDadoHex(12)">d12</button>
+                <button onclick="rolarDadoHex(20)">d20</button>
+            </div>
+            <div id="visor-hex-dado" class="visor-digital-hex">
+                [READY]
+            </div>
+        </div>
+    </div>
+</div>
+    
         <div class="grid-3" style="margin-bottom: 25px; border: 1px dashed var(--roxo); padding: 15px; border-radius: 8px; background: rgba(160, 32, 240, 0.05);">
     <div style="text-align: center;">
         HP MÁXIMO: <br>
